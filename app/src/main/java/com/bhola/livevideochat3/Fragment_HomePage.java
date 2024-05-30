@@ -208,7 +208,7 @@ public class Fragment_HomePage extends Fragment {
         //Start the animations preoidically by calling 'shineStart' method with ScheduledExecutorService
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
-        executorService.scheduleAtFixedRate(new Runnable() {
+        executorService.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
 
@@ -263,13 +263,16 @@ public class Fragment_HomePage extends Fragment {
 
         permissionDialog = builder.create();
         permissionDialog.show();
-        permissionDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT); //Controlling width and height.
 
+
+        // Calculate the desired width for the dialog
+        int dialogWidth = (int) (context.getResources().getDisplayMetrics().widthPixels * 0.75); // 85% of screen width
 
         ColorDrawable back = new ColorDrawable(Color.TRANSPARENT);
         InsetDrawable inset = new InsetDrawable(back, 20);
         permissionDialog.getWindow().setBackgroundDrawable(inset);
-        permissionDialog.getWindow().setLayout(750, WindowManager.LayoutParams.WRAP_CONTENT); //Controlling width and height.
+        // Set width and height using layout parameters
+        permissionDialog.getWindow().setLayout(dialogWidth, WindowManager.LayoutParams.WRAP_CONTENT); // Controlling width and height.
 
     }
 
